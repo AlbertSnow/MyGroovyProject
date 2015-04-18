@@ -1,0 +1,26 @@
+class Worker{
+    String workerName
+    def work(){println 'get work done'}
+    def analyze() { println 'analyze...'}
+    def writeReport(){ println 'get report written'}
+}
+
+class Expert{
+    String expertName
+    def analyze() {println 'expert analysis...'}
+}
+
+class Manager{
+    String mName;
+    String mLastName;
+    String mCompany
+    @Delegate Expert expert = new Expert()
+    @Delegate Worker worker = new Worker()
+}
+
+def curFile = new File("TestApplication");
+def isExist = curFile.exists();
+println "The file exist is '${isExist}'"
+println "The file path is " + curFile.getAbsolutePath();
+curFile.renameTo("TestApplication.java")
+println "The file path is " + curFile.getAbsolutePath();
